@@ -11,6 +11,7 @@ import com.lagradost.cloudstream3.LoadResponse.Companion.addTrailer
 //import com.lagradost.cloudstream3.animeproviders.ZoroProvider
 import com.lagradost.cloudstream3.mvvm.suspendSafeApiCall
 import com.lagradost.cloudstream3.utils.AppUtils.parseJson
+import com.lagradost.cloudstream3.utils.AppUtils.toJson
 import com.lagradost.cloudstream3.utils.AppUtils.tryParseJson
 import com.lagradost.cloudstream3.utils.Coroutines.ioSafe
 import com.lagradost.cloudstream3.utils.ExtractorLink
@@ -90,10 +91,10 @@ open class SflixProvider : MainAPI() {
         document.select("div.flw-item").forEach {
             val title = it.select("h2.film-name").text()
             val href = fixUrl(it.select("a").attr("href"))
-            val year = it.select("span.fdi-item").first{ element ->
+            val mediaYear = it.select("span.fdi-item").first{ element ->
                 element.ownText() != "" && element.ownText().length == 4
             }?.ownText()?.toIntOrNull()
-            if (year != null && year != parsedFilter.tmdbYear) { // incorrect movie
+            if (mediaYear != null && mediaYear != parsedFilter.tmdbYear) { // incorrect movie
                 return@forEach
             }
             val image = it.select("img").attr("data-src")
@@ -101,24 +102,19 @@ open class SflixProvider : MainAPI() {
 
             val metaInfo = it.select("div.fd-infor > span.fdi-item")
             // val rating = metaInfo[0].text()
-            val quality = getQualityFromString(metaInfo.getOrNull(1)?.text())
-
-            println("SHOULD NOT BE NULL")
-            println(title)
-            println(href)
-            println(this.name)
-
+            val mediaQuality = getQualityFromString(metaInfo.getOrNull(1)?.text())
 
             if (isMovie) {
-                return listOf(MovieSearchResponse(
-                    title,
-                    href,
-                    this.name,
-                    TvType.Movie,
-                    image,
-                    year,
-                    quality = quality
-                ))
+                return listOf(newMovieSearchResponse(
+                    name = title,
+                    url = href,
+                    type = TvType.Movie,
+                    fix = false
+                ) {
+                    posterUrl = image
+                    year = mediaYear
+                    quality = mediaQuality
+                })
             } else {
                 if (!isMovie) {
                     return listOf( TvSeriesSearchResponse(
@@ -127,9 +123,9 @@ open class SflixProvider : MainAPI() {
                         this.name,
                         TvType.TvSeries,
                         image,
-                        year,
+                        mediaYear,
                         null,
-                        quality = quality
+                        quality = mediaQuality
                     ))
                 }
             }

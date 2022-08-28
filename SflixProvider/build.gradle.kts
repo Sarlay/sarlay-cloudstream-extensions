@@ -1,12 +1,12 @@
 // use an integer for version numbers
-version = 4
+version = 5
 
 
 cloudstream {
     language = "en"
     // All of these properties are optional, you can safely remove them
 
-    description = "On clones are enabled"
+    description = "Only sflix is enabled"
     // authors = listOf("Cloudburst")
 
     /**

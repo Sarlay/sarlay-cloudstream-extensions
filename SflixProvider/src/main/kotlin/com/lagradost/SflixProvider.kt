@@ -87,50 +87,48 @@ open class SflixProvider : MainAPI() {
         val html = app.get(url).text
         val document = Jsoup.parse(html)
 
-        val output = document.select("div.flw-item").mapNotNull {
+        document.select("div.flw-item").forEach {
             val title = it.select("h2.film-name").text()
             val href = fixUrl(it.select("a").attr("href"))
             val year = it.select("span.fdi-item").first{ element ->
                 element.ownText() != "" && element.ownText().length == 4
             }?.ownText()?.toIntOrNull()
-                if (year != parsedFilter.tmdbYear) { // incorrect movie
-                    return@mapNotNull null
-                }
-                val image = it.select("img").attr("data-src")
-                val isMovie = href.contains("/movie/")
+            if (year != null && year != parsedFilter.tmdbYear) { // incorrect movie
+                return@forEach
+            }
+            val image = it.select("img").attr("data-src")
+            val isMovie = href.contains("/movie/")
 
-                val metaInfo = it.select("div.fd-infor > span.fdi-item")
-                // val rating = metaInfo[0].text()
-                val quality = getQualityFromString(metaInfo.getOrNull(1)?.text())
+            val metaInfo = it.select("div.fd-infor > span.fdi-item")
+            // val rating = metaInfo[0].text()
+            val quality = getQualityFromString(metaInfo.getOrNull(1)?.text())
 
-                if (isMovie) {
-                    MovieSearchResponse(
+            if (isMovie) {
+                return listOf(MovieSearchResponse(
+                    title,
+                    href,
+                    this.name,
+                    TvType.Movie,
+                    image,
+                    year,
+                    quality = quality
+                ))
+            } else {
+                if (!isMovie) {
+                    return listOf( TvSeriesSearchResponse(
                         title,
                         href,
                         this.name,
-                        TvType.Movie,
+                        TvType.TvSeries,
                         image,
                         year,
+                        null,
                         quality = quality
-                    )
-                } else {
-                    if (!isMovie) {
-                        TvSeriesSearchResponse(
-                            title,
-                            href,
-                            this.name,
-                            TvType.TvSeries,
-                            image,
-                            year,
-                            null,
-                            quality = quality
-                        )
-                    } else {
-                        null
-                    }
+                    ))
                 }
             }
-        return output
+        }
+        return listOf()
     }
 
 

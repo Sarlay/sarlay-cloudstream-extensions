@@ -103,6 +103,12 @@ open class SflixProvider : MainAPI() {
             // val rating = metaInfo[0].text()
             val quality = getQualityFromString(metaInfo.getOrNull(1)?.text())
 
+            println("SHOULD NOT BE NULL")
+            println(title)
+            println(href)
+            println(this.name)
+
+
             if (isMovie) {
                 return listOf(MovieSearchResponse(
                     title,

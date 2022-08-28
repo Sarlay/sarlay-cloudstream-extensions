@@ -188,8 +188,8 @@ open class SflixProvider : MainAPI() {
                 ?: throw ErrorLoadingException("Unable to get id from '$url'")
         else dataId
 
-        val recommendations =
-            document.select("div.film_list-wrap > div.flw-item").mapNotNull { element ->
+        val recommendations = null
+        /*    document.select("div.film_list-wrap > div.flw-item").mapNotNull { element ->
                 val titleHeader =
                     element.select("div.film-detail > .film-name > a") ?: return@mapNotNull null
                 val recUrl = fixUrlNull(titleHeader.attr("href")) ?: return@mapNotNull null
@@ -204,6 +204,7 @@ open class SflixProvider : MainAPI() {
                     year = null
                 )
             }
+        */
 
         if (isMovie) {
             // Movies

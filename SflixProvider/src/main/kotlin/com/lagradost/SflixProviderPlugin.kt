@@ -9,10 +9,5 @@ class SflixProviderPlugin : Plugin() {
     override fun load(context: Context) {
         // All providers should be added in this manner. Please don't edit the providers list directly.
         registerMainAPI(SflixProvider())
-        registerMainAPI(SolarmovieProvider())
-        registerMainAPI(TwoEmbedProvider())
-        registerMainAPI(DopeboxProvider())
-        registerMainAPI(ZoroProvider())
-        registerMainAPI(HDTodayProvider())
     }
 }

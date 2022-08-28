@@ -31,7 +31,7 @@ open class SflixProvider : MainAPI() {
     override var name = "Sflix.to"
 
     override val hasQuickSearch = false
-    override val hasMainPage = true
+    override val hasMainPage = false
     override val hasChromecastSupport = true
     override val hasDownloadSupport = true
     override val usesWebView = true
@@ -90,11 +90,12 @@ open class SflixProvider : MainAPI() {
         val output = document.select("div.flw-item").mapNotNull {
             val title = it.select("h2.film-name").text()
             val href = fixUrl(it.select("a").attr("href"))
-            val year = it.selectFirst("span.fdi-item:not(:has(i)):not(:has(strong))")?.text()?.toIntOrNull()
-            if (year != parsedFilter.tmdbYear) {
-                return@mapNotNull null
-            }
-
+            val year = it.select("span.fdi-item").first{
+                it.ownText() != "" && it.ownText().length == 4
+            }?.ownText()?.toIntOrNull()
+                if (year != parsedFilter.tmdbYear) { // incorrect movie
+                    return@mapNotNull null
+                }
                 val image = it.select("img").attr("data-src")
                 val isMovie = href.contains("/movie/")
 

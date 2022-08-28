@@ -90,8 +90,8 @@ open class SflixProvider : MainAPI() {
         val output = document.select("div.flw-item").mapNotNull {
             val title = it.select("h2.film-name").text()
             val href = fixUrl(it.select("a").attr("href"))
-            val year = it.select("span.fdi-item").first{
-                it.ownText() != "" && it.ownText().length == 4
+            val year = it.select("span.fdi-item").first{ element ->
+                element.ownText() != "" && element.ownText().length == 4
             }?.ownText()?.toIntOrNull()
                 if (year != parsedFilter.tmdbYear) { // incorrect movie
                     return@mapNotNull null

@@ -1,0 +1,143 @@
+[
+    {
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/Sarlay/sarlay-cloudstream-extensions",
+        "fileSize": 32530,
+        "status": 1,
+        "language": "en",
+        "authors": [
+            
+        ],
+        "tvTypes": [
+            "AnimeMovie",
+            "TvSeries",
+            "Movie"
+        ],
+        "version": 8,
+        "internalName": "NginxProvider",
+        "url": "https://raw.githubusercontent.com/Sarlay/sarlay-cloudstream-extensions/builds/NginxProvider.cs3",
+        "name": "NginxProvider"
+    },
+    {
+        "iconUrl": "https://www.google.com/s2/favicons?domain=olgply.com&sz=%size%",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/Sarlay/sarlay-cloudstream-extensions",
+        "fileSize": 5956,
+        "status": 0,
+        "language": "en",
+        "authors": [
+            "Blatzar"
+        ],
+        "tvTypes": [
+            "TvSeries",
+            "Movie"
+        ],
+        "version": 3,
+        "internalName": "OlgplyProvider",
+        "description": "Uses TMDB",
+        "url": "https://raw.githubusercontent.com/Sarlay/sarlay-cloudstream-extensions/builds/OlgplyProvider.cs3",
+        "name": "OlgplyProvider"
+    },
+    {
+        "iconUrl": "https://www.google.com/s2/favicons?domain=www.2embed.to&sz=%size%",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/Sarlay/sarlay-cloudstream-extensions",
+        "fileSize": 58814,
+        "status": 1,
+        "language": "en",
+        "authors": [
+            
+        ],
+        "tvTypes": [
+            "TvSeries",
+            "Movie"
+        ],
+        "version": 6,
+        "internalName": "SflixProvider",
+        "description": "Contains sflix and 2embed",
+        "url": "https://raw.githubusercontent.com/Sarlay/sarlay-cloudstream-extensions/builds/SflixProvider.cs3",
+        "name": "SflixProvider"
+    },
+    {
+        "iconUrl": "https://raw.githubusercontent.com/recloudstream/cloudstream-extensions/master/SuperStream/icon.png",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/Sarlay/sarlay-cloudstream-extensions",
+        "fileSize": 55391,
+        "status": 1,
+        "language": "en",
+        "authors": [
+            
+        ],
+        "tvTypes": [
+            "Anime",
+            "Movie",
+            "AnimeMovie",
+            "TvSeries"
+        ],
+        "version": 2,
+        "internalName": "SuperStream",
+        "url": "https://raw.githubusercontent.com/Sarlay/sarlay-cloudstream-extensions/builds/SuperStream.cs3",
+        "name": "SuperStream"
+    },
+    {
+        "iconUrl": "https://www.google.com/s2/favicons?domain=trailers.to&sz=%size%",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/Sarlay/sarlay-cloudstream-extensions",
+        "fileSize": 21420,
+        "status": 1,
+        "language": "en",
+        "authors": [
+            
+        ],
+        "tvTypes": [
+            "Cartoon",
+            "Anime",
+            "Movie",
+            "AnimeMovie",
+            "TvSeries"
+        ],
+        "version": 1,
+        "internalName": "TrailersTwoProvider",
+        "url": "https://raw.githubusercontent.com/Sarlay/sarlay-cloudstream-extensions/builds/TrailersTwoProvider.cs3",
+        "name": "TrailersTwoProvider"
+    },
+    {
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/Sarlay/sarlay-cloudstream-extensions",
+        "fileSize": 4924,
+        "status": 1,
+        "language": "en",
+        "authors": [
+            
+        ],
+        "tvTypes": [
+            "TvSeries",
+            "Movie"
+        ],
+        "version": 1,
+        "internalName": "VidSrcProvider",
+        "url": "https://raw.githubusercontent.com/Sarlay/sarlay-cloudstream-extensions/builds/VidSrcProvider.cs3",
+        "name": "VidSrcProvider"
+    },
+    {
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/Sarlay/sarlay-cloudstream-extensions",
+        "fileSize": 63511,
+        "status": 1,
+        "language": "en",
+        "authors": [
+            
+        ],
+        "tvTypes": [
+            "Anime",
+            "Movie",
+            "AnimeMovie",
+            "TvSeries"
+        ],
+        "version": 1,
+        "internalName": "VidstreamBundle",
+        "description": "Includes many providers with the same layout as Vidstream",
+        "url": "https://raw.githubusercontent.com/Sarlay/sarlay-cloudstream-extensions/builds/VidstreamBundle.cs3",
+        "name": "VidstreamBundle"
+    }
+]

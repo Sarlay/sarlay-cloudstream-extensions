@@ -1,0 +1,8 @@
+{
+    "name": "SunStream providers repository",
+    "description": "All providers are used as sources of TheMovieDatabase, WARNING: the more provider you download, the slower",
+    "manifestVersion": 1,
+    "pluginLists": [
+      "https://raw.githubusercontent.com/sarlay/sarlay-cloudstream-extensions/builds/plugins.json"
+    ]
+  }

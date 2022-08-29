@@ -1,12 +1,12 @@
 // use an integer for version numbers
-version = 5
+version = 1
 
 
 cloudstream {
     language = "en"
     // All of these properties are optional, you can safely remove them
 
-    description = "Contains sflix and 2embed"
+    description = "Includes many providers with the same layout as Vidstream"
     // authors = listOf("Cloudburst")
 
     /**
@@ -18,9 +18,11 @@ cloudstream {
      * */
     status = 1 // will be 3 if unspecified
     tvTypes = listOf(
-        "TvSeries",
+        "Anime",
         "Movie",
+        "AnimeMovie",
+        "TvSeries",
     )
 
-    iconUrl = "https://www.google.com/s2/favicons?domain=www.2embed.to&sz=%size%"
-}
+
+    }

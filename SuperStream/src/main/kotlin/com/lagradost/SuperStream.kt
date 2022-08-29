@@ -36,12 +36,9 @@ class SuperStream : MainAPI() {
         TvType.AnimeMovie,
     )
 
-    // 0 to get nsfw
-    private val hideNsfw = 1
-
     override val instantLinkLoading = true
 
-    val headers = mapOf(
+    private val headers = mapOf(
         "Platform" to "android",
         "Accept" to "charset=utf-8",
     )
@@ -218,6 +215,7 @@ class SuperStream : MainAPI() {
     private val appId = base64Decode("Y29tLnRkby5zaG93Ym94")
 
     override suspend fun getMainPage(page: Int, request: MainPageRequest): HomePageResponse {
+        val hideNsfw = if (settingsForProvider.enableAdult) 0 else 1
         val json = queryApi(
             """{"childmode":"$hideNsfw","app_version":"11.5","appid":"$appId","module":"Home_list_type_v2","channel":"Website","page":"$page","lang":"en","type":"all","pagelimit":"10","expired_date":"${getExpiryDate()}","platform":"android"}
             """.trimIndent()
@@ -262,6 +260,7 @@ class SuperStream : MainAPI() {
         @JsonProperty("data") val data: ArrayList<Data> = arrayListOf()
     )
 
+
     private data class TmdbProviderSearchFilter(
         @JsonProperty("title") val title: String,
         @JsonProperty("tmdbYear") val tmdbYear: Int?,
@@ -271,7 +270,7 @@ class SuperStream : MainAPI() {
     )
 
     override suspend fun search(query: String): List<SearchResponse> {
-        println("query: $query")
+        val hideNsfw = if (settingsForProvider.enableAdult) 0 else 1
         val parsedFilter = tryParseJson<TmdbProviderSearchFilter>(query)
         val searchedTitle = parsedFilter?.title ?: throw ErrorLoadingException()
 
@@ -494,7 +493,7 @@ class SuperStream : MainAPI() {
         // val module = if(type === "TvType.Movie") "Movie_detail" else "*tv series module*"
 
         val isMovie = loadData.type == TYPE_MOVIES
-
+        val hideNsfw = if (settingsForProvider.enableAdult) 0 else 1
         if (isMovie) { // 1 = Movie
             val apiQuery =
                 """{"childmode":"$hideNsfw","uid":"","app_version":"11.5","appid":"$appId","module":"Movie_detail","channel":"Website","mid":"${loadData.id}","lang":"en","expired_date":"${getExpiryDate()}","platform":"android","oss":"","group":""}"""

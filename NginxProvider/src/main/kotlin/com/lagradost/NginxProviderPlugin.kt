@@ -14,6 +14,7 @@ class NginxProviderPlugin : Plugin() {
     val nginxApi = NginxApi(0)
 
     override fun load(context: Context) {
+        nginxApi.init()
         // All providers should be added in this manner. Please don't edit the providers list directly.
         registerMainAPI(NginxProvider())
         ioSafe {
